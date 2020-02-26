@@ -30,6 +30,29 @@ const login = data =>
     body: JSON.stringify(user)
   }).then(res => res.json())
 
+  // fetchGames = () => {
+  //   fetch(`http://localhost:3000/games`)
+  //   .then(res => res.json())
+  //   .then(data => this.setState({
+  //     games: data
+  //   }))
+  // }
+
+  const getGame = (id) => {
+    return fetch(`http://localhost:3000/games/${id}`)
+    .then(res => res.json())
+  }
+
+  // const join = user => 
+  // fetch(`${API_URL}/games/${id}`, {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     Accept: "application/json"
+  //   },
+  //   body: JSON.stringify(user)
+  // }).then(res => res.json())
+
 
   export const api = {
     auth: {
@@ -37,4 +60,7 @@ const login = data =>
       getUser,
       signup
     },
+    game: {
+      getGame
+    }
   };

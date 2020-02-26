@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Menu, Segment } from 'semantic-ui-react'
-import { Link } from "react-router-dom";
+import { Menu, Segment, Image } from 'semantic-ui-react'
+import { NavLink } from "react-router-dom";
 
 
 class NavBar extends Component {
@@ -20,16 +20,25 @@ class NavBar extends Component {
     const { activeItem } = this.state
 
     return(
+    <>
+    <Segment.Group>
+    <Segment >
+      <Image src="/bookgameslogobanner.png" size='large'centered />
+    </Segment>
     <Segment inverted>
         <Menu inverted pointing secondary>
           <Menu.Item
+            as={NavLink}
+            to='/games'
             name='home'
             active={activeItem === 'home'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name='messages'
-            active={activeItem === 'messages'}
+            as={NavLink}
+            to='/games'
+            name='games'
+            active={activeItem === 'games'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
@@ -44,7 +53,7 @@ class NavBar extends Component {
               onClick={this.handlelogout}
             />
             <Menu.Item
-              as={Link}
+              as={NavLink}
               to='/login'
               name='login'
               active={activeItem === 'login'}
@@ -52,7 +61,9 @@ class NavBar extends Component {
             />
           </Menu.Menu>
         </Menu>
-  </Segment> 
+  </Segment>
+  </Segment.Group> 
+  </>
     )
   }
 }

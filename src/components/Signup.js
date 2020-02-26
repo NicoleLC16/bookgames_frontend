@@ -75,7 +75,7 @@ class Signup extends Component {
             </Segment>
           </Form>
           <Message>
-            Already have an account? <a href='#'>Sign In!</a>
+            Already have an account? <a href='/login'>Sign In!</a>
           </Message>
         </Grid.Column>
       </Grid>
