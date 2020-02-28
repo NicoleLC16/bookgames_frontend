@@ -7,7 +7,7 @@ import CommentsContainer from '../containers/CommentsContainer'
 class GamePage extends Component {
 
   render() {
-    const {title, rules, score } = this.props.game
+    const {game, game: {title, rules, score, host}} = this.props
 
     return(
     <Container>
@@ -21,9 +21,10 @@ class GamePage extends Component {
         </Header>
       </Segment>
       {/* Board */}
-      <Segment>
+      <Segment.Group horizontal>
+      <Segment className='board-segment'>
         <Grid columns={5} celled>
-          <Grid.Row>
+          <Grid.Row className='game-board'>
             {this.props.tasksCollection()}
           </Grid.Row>
         </Grid>
@@ -43,16 +44,19 @@ class GamePage extends Component {
       </Segment>
       {/* Players */}
       <Segment>
-        <PlayersContainer game={this.props.game} handleJoin={this.props.handleJoin}/>
+        <PlayersContainer host={host} game={this.props.game} handleJoin={this.props.handleJoin} warningMessage={this.props.warningMessage}/>
       </Segment>
-      {/* ScoreBoard */}
-      <Segment>
-        <ScoreBoard score={score} />
-      </Segment>
+      </Segment.Group>
+      <Segment.Group horizontal>
       {/* Comments and Post Points */}
       <Segment>
-        <CommentsContainer game={this.props.game}/>
+        <CommentsContainer commentMessage={this.props.commentMessage} commentsLogin={this.props.commentsLogin} updateComments={this.props.updateComments} game={this.props.game} users={this.props.users} user={this.props.user} cf={this.props.cf}/>
       </Segment>
+      {/* ScoreBoard */}
+      <Segment className='score-board-segment'>
+        <ScoreBoard updateState={this.props.updateState} score={score} scoreField={this.props.scoreField} handleEditInput={this.props.handleEditInput} game={game}/>
+      </Segment>
+      </Segment.Group>
     </Container>
 
     )

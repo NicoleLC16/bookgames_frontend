@@ -8,7 +8,11 @@ import Tasks from '../components/Tasks'
 class GamesPageContainer extends Component {
 
   state = {
-    game: null
+    game: null,
+    commentField: "",
+    scoreField: "",
+    warningMessage: false,
+    commentMessage: false
   }
 
   componentDidMount() {
@@ -16,7 +20,9 @@ class GamesPageContainer extends Component {
     console.log(id)
     api.game.getGame(id)
       .then(game => this.setState({
-        game: game
+        game: {...game, tasks: JSON.parse(game.tasks)},
+        scoreField: game.score,
+        commentSection: game.posts
       }, () => console.log(game)))
   }
 
@@ -25,12 +31,33 @@ class GamesPageContainer extends Component {
     game={this.state.game}
     gameHost={this.gameHost}
     tasksCollection={this.tasksCollection}
-    handleJoin={this.joinGame}/>
+    handleJoin={this.joinGame}
+    user={this.props.user}
+    users={this.props.users}
+    scoreField={this.state.scoreField}
+    handleEditInput={this.handleEditInput}
+    updateState={this.updateState}
+    updateComments={this.updateComments}
+    warningMessage={this.state.warningMessage}
+    commentsLogin={this.commentsLogin}
+    commentMessage={this.state.commentMessage}
+    />
   }
+
+  updateComments = (comment) => {
+    console.log(comment)
+    let newPosts = this.state.game
+    newPosts.posts.push(comment)
+    console.log(newPosts)
+    this.setState({
+      game: newPosts
+    })
+  }
+
 
   gameHost = () => {
     let host = this.state.game.host
-    console.log(host)
+    // console.log(host)
     let gHost = this.state.game.users.find(user => {
       return user.id === host
     })
@@ -38,14 +65,36 @@ class GamesPageContainer extends Component {
   }
 
   tasksCollection = () => {
-    return this.state.game.tasks.map(task => {
-      return  <Tasks task={task} />
+    let taskIds = Object.keys(this.state.game.tasks)
+    return taskIds.map(taskId => {
+      return  <Tasks task={this.state.game.tasks[taskId]} />
     })
   }
+
+  handleEditInput = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+  commentsLogin = () => {
+    this.setState(prevState => ({
+      commentMessage: !prevState.commentMessage
+    }))
+  }
+
 
   joinGame = (game) => {
     console.log(game.id)
     console.log(this.props.user)
+    let playerMatch = this.state.game.users.find(eachUser => {
+      return eachUser.id === this.props.user.id
+    })
+    if (playerMatch) {
+      this.setState(prevState => ({
+        warningMessage: !prevState.warningMessage
+      }))
+    }
+    else {
     fetch(`http://localhost:3000/join_game`, {
       method: "POST",
       headers: {
@@ -58,10 +107,12 @@ class GamesPageContainer extends Component {
         game_id: game.id
       })
     }).then(res => res.json())
-    .then(game => this.updatePlayers(game))
+    .then(game => ({...game, tasks: JSON.parse(game.tasks)}))
+    .then(game => this.updateState(game))
+    }
   }
 
-  updatePlayers = (newGame) => {
+  updateState = (newGame) => {
     this.setState({
       game: newGame
     })

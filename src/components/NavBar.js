@@ -22,8 +22,8 @@ class NavBar extends Component {
     return(
     <>
     <Segment.Group>
-    <Segment >
-      <Image src="/bookgameslogobanner.png" size='large'centered />
+    <Segment className="logoBanner" size='massive'>
+      <Image src="/textlogo3.png" size='large'centered />
     </Segment>
     <Segment inverted>
         <Menu inverted pointing secondary>
@@ -42,8 +42,8 @@ class NavBar extends Component {
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name='friends'
-            active={activeItem === 'friends'}
+            name='about'
+            active={activeItem === 'about'}
             onClick={this.handleItemClick}
           />
           <Menu.Menu position='right'>

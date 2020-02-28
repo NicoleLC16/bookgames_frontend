@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,31 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+
+.ui.segment.logoBanner {
+  background-image: url('/bookgameslogobanner.png')!important;
+  background: grey;
+  background-size: cover;
+}
+
+.game-board > div {
+  background-color: pink;
+  height: 150px;
+}
+
+.board-content {
+  border: 1px solid black;
+  justify-content: center!important; 
+  align-items: center!important;
+  display: flex!important;
+}
+
+.board-segment {
+  width: 70%!important;
+}
+
+.score-board-segment {
+  width: 5%!important;
 }

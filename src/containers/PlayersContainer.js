@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Header, Button } from 'semantic-ui-react'
+import { Header, Button, Message } from 'semantic-ui-react'
 import Players from '../components/Players'
 
 class PlayersContainer extends Component {
 
   playersCollection = () => {
     return this.props.game.users.map(user => {
-      return <Players key={user.id} user={user} />
+     return (user.id !== this.props.host) ? <Players key={user.id} user={user} game={this.props.game} /> : null
     })
   }
 
@@ -17,6 +17,10 @@ class PlayersContainer extends Component {
       {this.playersCollection()}
       <Button color='teal' floated='right' 
       onClick={() => this.props.handleJoin(this.props.game)}>Join Game</Button>
+      {this.props.warningMessage ? 
+      <Message warning>
+        <Message.Header>You are already a player of this game!</Message.Header>
+      </Message> : null}
       </>
     )
   }

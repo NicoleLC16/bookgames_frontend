@@ -7,7 +7,7 @@ import {api} from './services/api'
 import Signup from './components/Signup'
 import NavBar from './components/NavBar'
 import GamesContainer from './containers/GamesContainer'
-// import GameDisplay from './components/GameDisplay'
+import AboutPage from './components/AboutPage'
 import GamesPageContainer from './containers/GamePageContainer';
 
 class App extends Component {
@@ -15,7 +15,8 @@ class App extends Component {
   state = {
     user: null,
     games: [],
-    selectedGame: []
+    selectedGame: [],
+    users: []
   }
 
   componentDidMount() {
@@ -30,6 +31,7 @@ class App extends Component {
         }
       })
     this.fetchGames()
+    this.fetchUsers()
   }
 
   fetchGames = () => {
@@ -39,6 +41,15 @@ class App extends Component {
       games: data
     }))
   }
+
+  fetchUsers = () => {
+    fetch(`http://localhost:3000/users`)
+    .then(res => res.json())
+    .then(data => this.setState({
+      users: data
+    }))
+  }
+
 
   login = data => {
     this.setState({user: data.user})
@@ -84,10 +95,17 @@ class App extends Component {
               handleGameSelect={this.gameSelect}/>} 
         />
         <Route
+              exact
+              path="/about"
+              render={props => <AboutPage {...props} 
+              />} 
+        />
+        <Route
               path="/games/:id"
               render={props => <GamesPageContainer {...props} 
               selectedGame={this.state.selectedGame}
               user={this.state.user} 
+              users={this.state.users}
               games={this.state.games}/> } 
         />
       </Router>
