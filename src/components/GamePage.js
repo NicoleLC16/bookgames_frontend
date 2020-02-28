@@ -44,7 +44,7 @@ class GamePage extends Component {
       </Segment>
       {/* Players */}
       <Segment>
-        <PlayersContainer host={host} game={this.props.game} handleJoin={this.props.handleJoin} warningMessage={this.props.warningMessage}/>
+        <PlayersContainer selectPlayer={this.props.selectPlayer} host={host} game={this.props.game} handleJoin={this.props.handleJoin} warningMessage={this.props.warningMessage}/>
       </Segment>
       </Segment.Group>
       <Segment.Group horizontal>

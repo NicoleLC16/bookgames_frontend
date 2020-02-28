@@ -45,15 +45,19 @@
 }
 
 .game-board > div {
-  background-color: pink;
   height: 150px;
 }
 
-.board-content {
+.board-content, .board-content-completed {
+  background-color: pink;
   border: 1px solid black;
   justify-content: center!important; 
   align-items: center!important;
   display: flex!important;
+}
+
+.board-content-completed {
+  background-color: rgb(152, 119, 175);
 }
 
 .board-segment {

@@ -6,7 +6,7 @@ class PlayersContainer extends Component {
 
   playersCollection = () => {
     return this.props.game.users.map(user => {
-     return (user.id !== this.props.host) ? <Players key={user.id} user={user} game={this.props.game} /> : null
+     return (user.id !== this.props.host) ? <Players selectPlayer={this.props.selectPlayer} key={user.id} user={user} game={this.props.game} /> : null
     })
   }
 

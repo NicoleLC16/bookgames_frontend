@@ -4,13 +4,12 @@ import { Segment } from 'semantic-ui-react'
 
 const Players = props => {
 
-  const displayPlayerBoard = () => {
-    console.log(props.game)
+  const handleSelect = () => {
+    props.selectPlayer(props.user.id)
   }
-
   return (
     <>
-    <Segment onClick={displayPlayerBoard()}>
+    <Segment onClick={handleSelect}>
     {props.user.username}<br></br>  
     Name: {props.user.name}
     </Segment>

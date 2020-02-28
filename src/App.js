@@ -85,7 +85,8 @@ class App extends Component {
               exact
               path="/signup"
               render={props => <Signup {...props} 
-              onLogin={this.login}/>} 
+              onLogin={this.login}
+              fetchUsers={this.fetchUsers}/>} 
         />
         <Route
               exact

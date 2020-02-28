@@ -12,7 +12,8 @@ class GamesPageContainer extends Component {
     commentField: "",
     scoreField: "",
     warningMessage: false,
-    commentMessage: false
+    commentMessage: false,
+    selectedPlayer: null
   }
 
   componentDidMount() {
@@ -23,7 +24,7 @@ class GamesPageContainer extends Component {
         game: {...game, tasks: JSON.parse(game.tasks)},
         scoreField: game.score,
         commentSection: game.posts
-      }, () => console.log(game)))
+      }, () => console.log(this.state.game)))
   }
 
   showGame = () => {
@@ -41,7 +42,14 @@ class GamesPageContainer extends Component {
     warningMessage={this.state.warningMessage}
     commentsLogin={this.commentsLogin}
     commentMessage={this.state.commentMessage}
+    selectPlayer={this.selectPlayer}
     />
+  }
+
+  selectPlayer= (playerId) => {
+    this.setState({
+      selectedPlayer: playerId
+    })
   }
 
   updateComments = (comment) => {
@@ -67,7 +75,7 @@ class GamesPageContainer extends Component {
   tasksCollection = () => {
     let taskIds = Object.keys(this.state.game.tasks)
     return taskIds.map(taskId => {
-      return  <Tasks task={this.state.game.tasks[taskId]} />
+      return  <Tasks task={this.state.game.tasks[taskId]} selectedPlayer={this.state.selectedPlayer} />
     })
   }
 
@@ -117,8 +125,6 @@ class GamesPageContainer extends Component {
       game: newGame
     })
   }
-
-
 
   render() {
     return(
