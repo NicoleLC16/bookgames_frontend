@@ -11,19 +11,19 @@ const GamesCard = props => {
     let ghost = props.game.users.find (user => {
       return user.id === host
     })
+    console.log(ghost)
     return ghost.name
   }
 
   return (
-    <Link to={`/games/${id}`} >
-    <Card onClick={() => props.handleGameSelect(props.game)}>
-      <Image src="https://picsum.photos/250" wrapped ui={false} />
+    <Card padded='true'>
+      {/* onClick={() => props.handleGameSelect(props.game)} */}
+      <Image src="https://picsum.photos/250" wrapped ui={false} as={Link} to={`/games/${id}`} />
       <Card.Content>
         <Card.Header>{title}</Card.Header>
         <Card.Description>Game Host: {gameHost()}</Card.Description>
       </Card.Content>
     </Card>
-    </Link>
 
   );
 };

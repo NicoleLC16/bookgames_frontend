@@ -13,22 +13,26 @@ class GamesPageContainer extends Component {
     scoreField: "",
     warningMessage: false,
     commentMessage: false,
-    selectedPlayer: null
+    selectedPlayer: null,
+    showScore: false
   }
-
+      
   componentDidMount() {
     let id = parseInt(this.props.match.params.id)
     console.log(id)
     api.game.getGame(id)
-      .then(game => this.setState({
-        game: {...game, tasks: JSON.parse(game.tasks)},
+      .then(game => {
+        console.log(game.tasks)
+        this.setState({
+        game: {...game, tasks: JSON.parse(game.tasks)}, 
         scoreField: game.score,
         commentSection: game.posts
-      }, () => console.log(this.state.game)))
+      }, () => console.log(this.state.game))})
   }
 
   showGame = () => {
     return <GamePage 
+    key={this.state.game.id}
     game={this.state.game}
     gameHost={this.gameHost}
     tasksCollection={this.tasksCollection}
@@ -43,6 +47,9 @@ class GamesPageContainer extends Component {
     commentsLogin={this.commentsLogin}
     commentMessage={this.state.commentMessage}
     selectPlayer={this.selectPlayer}
+    showScore={this.state.showScore}
+    showEditScore={this.showEditScore}
+    updateStateScore={this.updateStateScore}
     />
   }
 
@@ -75,8 +82,27 @@ class GamesPageContainer extends Component {
   tasksCollection = () => {
     let taskIds = Object.keys(this.state.game.tasks)
     return taskIds.map(taskId => {
-      return  <Tasks task={this.state.game.tasks[taskId]} selectedPlayer={this.state.selectedPlayer} />
+      return  <Tasks 
+      task={this.state.game.tasks[taskId]} 
+      selectedPlayer={this.state.selectedPlayer} 
+      game={this.state.game}
+      updateState={this.updateState}
+      user={this.props.user}
+      />
     })
+  }
+
+  showEditScore = () => {
+    this.setState(prevState => ({
+      showScore: !prevState.showScore
+    }))
+  }
+
+  updateStateScore = (newGame) => {
+    this.setState(prevState => ({
+      game: newGame,
+      showScore: !prevState.showScore
+    }))
   }
 
   handleEditInput = e => {

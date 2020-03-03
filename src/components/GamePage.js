@@ -44,7 +44,12 @@ class GamePage extends Component {
       </Segment>
       {/* Players */}
       <Segment>
-        <PlayersContainer selectPlayer={this.props.selectPlayer} host={host} game={this.props.game} handleJoin={this.props.handleJoin} warningMessage={this.props.warningMessage}/>
+        <PlayersContainer 
+        selectPlayer={this.props.selectPlayer} 
+        host={host} game={this.props.game} 
+        handleJoin={this.props.handleJoin} 
+        warningMessage={this.props.warningMessage}
+        loggedIn={this.props.user}/>
       </Segment>
       </Segment.Group>
       <Segment.Group horizontal>
@@ -54,7 +59,14 @@ class GamePage extends Component {
       </Segment>
       {/* ScoreBoard */}
       <Segment className='score-board-segment'>
-        <ScoreBoard updateState={this.props.updateState} score={score} scoreField={this.props.scoreField} handleEditInput={this.props.handleEditInput} game={game}/>
+        <ScoreBoard 
+        showScore={this.props.showScore}
+        score={score} scoreField={this.props.scoreField} 
+        handleEditInput={this.props.handleEditInput} 
+        game={game}
+        showEditScore={this.props.showEditScore}
+        updateStateScore={this.props.updateStateScore}
+        user={this.props.user}/>
       </Segment>
       </Segment.Group>
     </Container>

@@ -15,11 +15,12 @@ class PlayersContainer extends Component {
       <>
       <Header as="h3">Players:</Header>
       {this.playersCollection()}
-      <Button color='teal' floated='right' 
+      <Button color='teal' floated='right'
+      disabled={this.props.loggedIn === null} 
       onClick={() => this.props.handleJoin(this.props.game)}>Join Game</Button>
       {this.props.warningMessage ? 
       <Message warning>
-        <Message.Header>You are already a player of this game!</Message.Header>
+        <Message.Header>You are already a player/host of this game!</Message.Header>
       </Message> : null}
       </>
     )

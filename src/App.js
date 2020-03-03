@@ -16,7 +16,8 @@ class App extends Component {
     user: null,
     games: [],
     selectedGame: [],
-    users: []
+    users: [],
+    gameForm: false
   }
 
   componentDidMount() {
@@ -67,6 +68,19 @@ class App extends Component {
     })
   }
 
+  updateGames = (game) => {
+    this.setState(prevState => ({
+      games: [...prevState.games, game],
+      gameForm: !prevState.gameForm
+    }))
+  }
+
+  toggleGameButton = () => {
+    this.setState(prevState => ({
+      gameForm: !prevState.gameForm
+    }))
+  }
+
   render () {
     return (
       <Router>
@@ -93,7 +107,11 @@ class App extends Component {
               path="/games"
               render={props => <GamesContainer {...props} 
               games={this.state.games} 
-              handleGameSelect={this.gameSelect}/>} 
+              handleGameSelect={this.gameSelect}
+              user={this.state.user}
+              updateGames={this.updateGames}
+              gameForm={this.state.gameForm}
+              toggleGameButton={this.toggleGameButton}/>} 
         />
         <Route
               exact

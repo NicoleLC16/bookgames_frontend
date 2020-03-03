@@ -4,11 +4,38 @@ import { Grid } from 'semantic-ui-react'
 
 const Tasks = props => {
   // console.log(props.task.completed)
-  const boardSelect = (task) => {
+  const boardSelect = () => {
     // push the id of a user into comments
     // let player = props.user.id
     // props.task.completed.push(player)
-    return console.log(task)
+    
+    let playerId = props.selectedPlayer
+
+    console.log(playerId)
+    props.task.completed.push(playerId)
+    console.log(playerId)
+    console.log(props.game.tasks)  
+    fetch(`http://localhost:3000/games/${props.game.id}`, {
+      method: "PATCH",
+      headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        // this is only pushing one instance of task
+        // need to push all of tasks
+          tasks: JSON.stringify(props.game.tasks)
+      })
+  }).then(res => res.json())
+  // .then(game => ({...game, tasks: JSON.parse(game.tasks)}))
+  .then(props.updateState(props.game))
+  // .then(game => ({...game, tasks: JSON.parse(game.tasks)}))
+  // .then(game => updateState(game)) 
+
+    // let completedtasks = props.task.completed.push(playerId)
+    // console.log(completedtasks)
+    // console.log(props.game)
+    // return console.log(props.task)
   }
 
   const isCompleted = () => {
@@ -31,7 +58,7 @@ const Tasks = props => {
   console.log(isCompleted())
   return (
     <>
-        <Grid.Column className={isCompleted() ? 'board-content-completed' : 'board-content'} onClick={() => boardSelect(props.task)}>{props.task.description}</Grid.Column>
+        <Grid.Column className={isCompleted() ? 'board-content-completed' : 'board-content'} onClick={props.selectedPlayer === null || (props.user === null || props.user.id !== props.game.host) ? null : () => boardSelect()}>{props.task.description}</Grid.Column>
     </>
 
   );

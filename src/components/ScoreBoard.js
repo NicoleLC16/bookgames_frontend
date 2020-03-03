@@ -2,7 +2,7 @@ import React from "react"
 import { Header, Segment, Button, Form, TextArea } from 'semantic-ui-react'
 
 
-const ScoreBoard = ({game, score, scoreField, handleEditInput, updateState}) => {
+const ScoreBoard = ({user, game, score, scoreField, handleEditInput, updateStateScore, showScore, showEditScore}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -20,21 +20,32 @@ const ScoreBoard = ({game, score, scoreField, handleEditInput, updateState}) => 
           })
       }).then(res => res.json())
       .then(game => ({...game, tasks: JSON.parse(game.tasks)}))
-      .then(game => updateState(game))
+      .then(game => updateStateScore(game))
   }
 
   return (
     <>
+      <div>
         <Header as="h3">Score Board:</Header>
           <Segment>{score}</Segment>
+      </div>
+      {showScore ?
+        <div>
             <Form onSubmit={(e) => handleSubmit(e)}>
               <TextArea 
                 name='scoreField'
                 onChange={e => handleEditInput(e)}
                 value={scoreField} 
                 placeholder='Tell us more' />
-              <Button color='teal' floated='right'>Edit Score Board</Button>
+              <Button color='teal' floated='right'>Submit</Button>
             </Form>
+        </div>
+      : null }
+      <div>
+      {user === null || user.id !== game.host ? null :
+          <Button color='teal' floated='right' onClick={() => showEditScore()}>Edit Score Board</Button>
+      }
+      </div>
     </>
 
   );

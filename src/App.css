@@ -67,3 +67,9 @@
 .score-board-segment {
   width: 5%!important;
 }
+
+.ui.four.cards>.card {
+  width: calc(25% - 1.5em);
+  margin-left: .75em;
+  margin-right: .75em;
+}
