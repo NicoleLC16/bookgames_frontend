@@ -3,12 +3,15 @@ import './App.css';
 // import ButtonExampleButton from './ButtonExampleButton';
 import Login from './components/Login'
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Container } from 'semantic-ui-react'
 import {api} from './services/api'
 import Signup from './components/Signup'
 import NavBar from './components/NavBar'
 import GamesContainer from './containers/GamesContainer'
 import AboutPage from './components/AboutPage'
 import GamesPageContainer from './containers/GamePageContainer';
+import Homepage from './components/Homepage'
+import Footer from './components/Footer'
 
 class App extends Component {
 
@@ -84,10 +87,17 @@ class App extends Component {
   render () {
     return (
       <Router>
+        <Container className="app-wrapper-container" raised>
         <Route
           path="/"
           render={props => <NavBar {...props} 
-          onLogOut={this.logout}/>}
+          onLogOut={this.logout}
+          user={this.state.user}/>}
+        />
+        <Route
+          exact
+          path="/"
+          render={props => <Homepage {...props} />}
         />
         <Route
               exact
@@ -127,6 +137,12 @@ class App extends Component {
               users={this.state.users}
               games={this.state.games}/> } 
         />
+        <Route
+              path="/"
+              render={props => <Footer {...props} 
+              />}
+        />
+        </Container>
       </Router>
     );
   }

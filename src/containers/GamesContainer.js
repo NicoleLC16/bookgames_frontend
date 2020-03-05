@@ -16,8 +16,8 @@ class GamesContainer extends Component {
 
   render() {
     return(
-      <Container>
-      <Button disabled={this.props.user === null} onClick={() => this.props.toggleGameButton()}>Host A New Game</Button>
+      <Container style={{padding: "20px"}}>
+      <Button disabled={this.props.user === null} onClick={() => this.props.toggleGameButton()} style={{backgroundColor: '#9a101b', color: 'white'}} >Host A New Game</Button>
       {this.props.gameForm ? 
       <CreateBookGame 
       user={this.props.user} 

@@ -15,7 +15,7 @@ class PlayersContainer extends Component {
       <>
       <Header as="h3">Players:</Header>
       {this.playersCollection()}
-      <Button color='teal' floated='right'
+      <Button style={{backgroundColor: '#9a101b', color: 'white'}} floated='right'
       disabled={this.props.loggedIn === null} 
       onClick={() => this.props.handleJoin(this.props.game)}>Join Game</Button>
       {this.props.warningMessage ? 

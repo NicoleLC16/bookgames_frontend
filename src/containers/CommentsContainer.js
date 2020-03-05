@@ -1,17 +1,26 @@
 import React, { Component } from "react";
-import { Header, Button, Segment, Form, TextArea, Message } from 'semantic-ui-react'
-import Comments from '../components/Comments'
+import { Header, Button, Segment, Form, TextArea, Message, Menu, Comment } from 'semantic-ui-react'
+import Posts from '../components/Posts'
 
 class CommentsContainer extends Component {
 
   state = {
     comment: "",
-    type: "comment"
+    type: "comment",
+    activeItem: 'comments'
   }
 
-  postsCollection = () => {
+  commentsCollection = () => {
     return this.props.game.posts.map(post => {
-      return <Comments post={post} key={post.id} users={this.props.users}/>
+      return post.ctype.includes('comment') ?
+      <Posts post={post} key={post.id} users={this.props.users}/> : null
+    })
+  }
+
+  pointsCollection = () => {
+    return this.props.game.posts.map(post => {
+      return post.ctype.includes('point') ?
+      <Posts post={post} key={post.id} users={this.props.users}/> : null
     })
   }
 
@@ -20,19 +29,6 @@ class CommentsContainer extends Component {
         [e.target.name]: e.target.value
     })
 }
-
-// matchUserId = () => {
-//   let postUser = this.props.posts.map(post => {
-//     return post.user_id
-//   })
-//   // console.log(postUser)
-//   let userObj = this.props.users.find(user => {
-//     return user.id === postUser
-//   })
-//   // userObj = userObj || {}
-//   // userObj ? console.log(userObj.username) : null
-//   if (userObj) return userObj.id
-// }
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -49,7 +45,7 @@ class CommentsContainer extends Component {
         },
         body: JSON.stringify({
             content: this.state.comment,
-            ctype: this.state.type,
+            ctype: this.state.activeItem,
             user_id: this.props.user.id,
             game_id: this.props.game.id
         })
@@ -61,21 +57,47 @@ class CommentsContainer extends Component {
   // }
   }
 
-  // addComment = (comment) => {
-  //   let postsCollection = this.props.game.posts
-  //   postsCollection.push(comment)
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-  // }
 
   render() {
+    const { activeItem } = this.state
     return(
       <>
       {this.props.commentMessage ? 
       <Message warning>
         <Message.Header>Please Log In to comment!</Message.Header>
       </Message> : null}
+
       <Header as="h3">Comments And Points: </Header>
-        <Segment>{this.postsCollection()}</Segment>
+
+      <Form onSubmit={(e) => this.handleSubmit(e)}>
+          <Form.Field placeholder='Tell us more'
+            control={TextArea}
+            name="comment"
+            onChange={this.handleCommentChange}
+            value={this.state.comment} />
+          <Button style={{backgroundColor: '#9a101b', color: 'white'}} floated='right'>Submit</Button>
+        </Form>
+
+      <Menu attached='top' tabular>
+          <Menu.Item
+            name='comments'
+            active={activeItem === 'comments'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name='point'
+            active={activeItem === 'point'}
+            onClick={this.handleItemClick}
+          />
+      </Menu>
+
+        {this.state.activeItem === 'comments' ?
+        <Comment.Group attached='bottom'>{this.commentsCollection()}</Comment.Group> : null}
+        {this.state.activeItem === 'point' ?
+        <Comment.Group attached='bottom'>{this.pointsCollection()}</Comment.Group> : null}
+{/* 
         <Form onSubmit={(e) => this.handleSubmit(e)}>
           <Form.Field placeholder='Tell us more'
             control={TextArea}
@@ -83,7 +105,7 @@ class CommentsContainer extends Component {
             onChange={this.handleCommentChange}
             value={this.state.comment} />
           <Button color='teal' floated='right'>Submit</Button>
-        </Form>
+        </Form> */}
       </>
     )
   }

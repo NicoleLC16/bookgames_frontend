@@ -12,35 +12,35 @@ class GamePage extends Component {
     return(
     <Container>
       {/* title and host */}
-      <Segment clearing>
+      <Segment clearing style={{marginBottom: '0px'}}>
         <Header as='h2' floated='right'>
           Game Host: {this.props.gameHost()}
         </Header>
         <Header as='h2' floated='left'>
           {title}
         </Header>
-      </Segment>
+      </Segment>      
       {/* Board */}
-      <Segment.Group horizontal>
-      <Segment className='board-segment'>
+      <Segment.Group horizontal raised style={{marginTop: '0px', marginBottom: '0px'}}>
+      <Segment className='board-segment' raised>
+      {/* Rules Modal */}
+      <Modal trigger={<Button style={{backgroundColor: '#9a101b', color: 'white'}}>Rules</Button>} floated='left'>
+        <Modal.Header>Game Rules</Modal.Header>
+        <Modal.Content image>
+          <Image wrapped size='medium' src='https://picsum.photos/250' />
+          <Modal.Description>
+              <Header>{`Rules for: ${title} Game`}</Header>
+            <p>
+              {rules}
+            </p>
+          </Modal.Description>
+        </Modal.Content>
+      </Modal>
         <Grid columns={5} celled>
           <Grid.Row className='game-board'>
             {this.props.tasksCollection()}
           </Grid.Row>
         </Grid>
-      {/* Rules Modal */}
-        <Modal trigger={<Button>Rules</Button>} floated='left'>
-          <Modal.Header>Game Rules</Modal.Header>
-            <Modal.Content image>
-              <Image wrapped size='medium' src='https://picsum.photos/250' />
-              <Modal.Description>
-                <Header>{`Rules for: ${title} Game`}</Header>
-              <p>
-                {rules}
-              </p>
-              </Modal.Description>
-            </Modal.Content>
-        </Modal>
       </Segment>
       {/* Players */}
       <Segment>
@@ -52,7 +52,7 @@ class GamePage extends Component {
         loggedIn={this.props.user}/>
       </Segment>
       </Segment.Group>
-      <Segment.Group horizontal>
+      <Segment.Group horizontal style={{marginTop: '0px'}}>
       {/* Comments and Post Points */}
       <Segment>
         <CommentsContainer commentMessage={this.props.commentMessage} commentsLogin={this.props.commentsLogin} updateComments={this.props.updateComments} game={this.props.game} users={this.props.users} user={this.props.user} cf={this.props.cf}/>

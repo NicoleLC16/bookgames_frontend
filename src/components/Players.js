@@ -1,5 +1,5 @@
 import React from "react"
-import { Segment } from 'semantic-ui-react'
+import { Segment, Header } from 'semantic-ui-react'
 
 
 const Players = props => {
@@ -9,8 +9,8 @@ const Players = props => {
   }
   return (
     <>
-    <Segment onClick={handleSelect}>
-    {props.user.username}<br></br>  
+    <Segment onClick={handleSelect} className='player-block' raised>
+    <Header as='h5'>{props.user.username}</Header>
     Name: {props.user.name}
     </Segment>
     </>
