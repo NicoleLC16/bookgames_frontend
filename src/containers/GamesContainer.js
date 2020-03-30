@@ -6,7 +6,6 @@ import CreateBookGame from './CreateBookGame'
 class GamesContainer extends Component {
 
   gamesCollection = () => {
-    // if (this.props.games)
     return this.props.games.map(game => {
       return <GamesCard game={game} 
       key={game.id} 

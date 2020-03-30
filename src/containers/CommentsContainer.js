@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Header, Button, Segment, Form, TextArea, Message, Menu, Comment } from 'semantic-ui-react'
+import { Header, Button, Form, TextArea, Message, Menu, Comment } from 'semantic-ui-react'
 import Posts from '../components/Posts'
 
 class CommentsContainer extends Component {
@@ -53,6 +53,9 @@ class CommentsContainer extends Component {
     .then(res => res.json())
     // .then(data => console.log(data))
     .then(comment => this.props.updateComments(comment))
+    .then(this.setState({
+      comment: ""
+    }))
     }
   // }
   }

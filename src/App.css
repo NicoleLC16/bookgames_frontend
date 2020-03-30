@@ -93,7 +93,7 @@
   font-size: 60px;
   padding: 30vh 0px 40px 0px;
   color: white;
-  text-shadow: 10px 10px 10px #760e16;
+  text-shadow: 10px 10px 10px #2d1b1c;
 }
 
 .game-board {
@@ -115,7 +115,11 @@
 }
 
 .link-frontpage {
-  color: burlywood
+  color: #a21d28;
+}
+
+.frontpage-p-text-size {
+  font-size: 16px;
 }
 
 .ui.placeholder.center.aligned.segment.info-frontpage {
@@ -123,11 +127,12 @@
 }
 
 .board-content, .board-content-completed {
-  background-color: #e8ccc2;
+  background-color: #e88f958c;
   border: 1px dashed grey;
   justify-content: center!important; 
   align-items: center!important;
   display: flex!important;
+  font-weight: bolder;
 }
 
 .board-content-completed {
@@ -141,6 +146,10 @@
 
 .score-board-segment {
   width: 5%!important;
+}
+
+.posts-segment {
+  width: 62%!important;
 }
 
 .ui.four.cards>.card {

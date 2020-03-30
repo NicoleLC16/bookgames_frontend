@@ -87,7 +87,7 @@ class App extends Component {
   render () {
     return (
       <Router>
-        <Container className="app-wrapper-container" raised>
+        <Container className="app-wrapper-container">
         <Route
           path="/"
           render={props => <NavBar {...props} 
@@ -118,6 +118,7 @@ class App extends Component {
               render={props => <GamesContainer {...props} 
               games={this.state.games} 
               handleGameSelect={this.gameSelect}
+              users={this.state.users}
               user={this.state.user}
               updateGames={this.updateGames}
               gameForm={this.state.gameForm}

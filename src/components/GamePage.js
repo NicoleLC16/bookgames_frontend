@@ -30,7 +30,7 @@ class GamePage extends Component {
           <Image wrapped size='medium' src='https://picsum.photos/250' />
           <Modal.Description>
               <Header>{`Rules for: ${title} Game`}</Header>
-            <p>
+            <p style={{whiteSpace: 'pre-wrap', marginBottom: '10px'}}>
               {rules}
             </p>
           </Modal.Description>
@@ -54,8 +54,14 @@ class GamePage extends Component {
       </Segment.Group>
       <Segment.Group horizontal style={{marginTop: '0px'}}>
       {/* Comments and Post Points */}
-      <Segment>
-        <CommentsContainer commentMessage={this.props.commentMessage} commentsLogin={this.props.commentsLogin} updateComments={this.props.updateComments} game={this.props.game} users={this.props.users} user={this.props.user} cf={this.props.cf}/>
+      <Segment className='posts-segment'>
+        <CommentsContainer 
+        commentMessage={this.props.commentMessage} 
+        commentsLogin={this.props.commentsLogin} 
+        updateComments={this.props.updateComments} 
+        game={this.props.game} 
+        users={this.props.users} 
+        user={this.props.user} cf={this.props.cf}/>
       </Segment>
       {/* ScoreBoard */}
       <Segment className='score-board-segment'>

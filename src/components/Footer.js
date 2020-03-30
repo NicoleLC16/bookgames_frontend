@@ -1,6 +1,6 @@
 import React from "react"
-import { Header, List, Grid, Icon, Button, Segment, Container} from 'semantic-ui-react'
-import { Link } from "react-router-dom"
+import { Header, List, Grid, Segment, Container} from 'semantic-ui-react'
+import { NavLink } from "react-router-dom"
 
 
 const Footer = props => {
@@ -22,29 +22,27 @@ const Footer = props => {
         <Grid divided inverted stackable>
           <Grid.Row>
             <Grid.Column width={3}>
-              <Header inverted as='h4' content='About' />
+              <Header inverted as='h4' content='Internal Links' />
               <List link inverted>
-                <List.Item as='a'>Sitemap</List.Item>
-                <List.Item as='a'>Contact Us</List.Item>
-                <List.Item as='a'>Religious Ceremonies</List.Item>
-                <List.Item as='a'>Gazebo Plans</List.Item>
+                <List.Item as={NavLink} to='/login'>Login</List.Item>
+                <List.Item as={NavLink} to='/signup'>Sign up</List.Item>
+                <List.Item as={NavLink} to='/about'>About</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={3}>
-              <Header inverted as='h4' content='Services' />
+              <Header inverted as='h4' content='External Links' />
               <List link inverted>
-                <List.Item as='a'>Banana Pre-Order</List.Item>
-                <List.Item as='a'>DNA FAQ</List.Item>
-                <List.Item as='a'>How To Access</List.Item>
-                <List.Item as='a'>Favorite X-Men</List.Item>
+                <List.Item a href='https://www.linkedin.com/in/nicole-cabral-b2416219a/'>Linked In</List.Item>
+                <List.Item a href='https://www.goodreads.com/user/show/48391432-nicole-s-book-diaries'>GoodReads</List.Item>
+                <List.Item a href='https://www.instagram.com/nicolesbookdiaries/?hl=en'>Instagram</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
               <Header as='h4' inverted>
-                Footer Header
+                Happy Reading
               </Header>
               <p>
-                Extra space for a call to action inside the footer that could help re-engage users.
+                More games to come in the future!
               </p>
             </Grid.Column>
           </Grid.Row>

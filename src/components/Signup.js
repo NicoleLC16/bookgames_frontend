@@ -38,7 +38,7 @@ class Signup extends Component {
     return (
       <Grid textAlign='center' style={{ height: '70vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as='h2' color='teal' textAlign='center'>
+          <Header as='h2' style={{color: 'black'}} textAlign='center'>
             <Image src='/bookIcon.png' /> Create A New Account!
           </Header>
           <Form size='large' onSubmit={this.handleSignupSubmit}>
@@ -70,7 +70,7 @@ class Signup extends Component {
                 value={this.state.formFields.password} 
               />
 
-              <Button color='teal' fluid size='large'>
+              <Button style={{backgroundColor: '#760E16', color: 'white'}} fluid size='large'>
                 Login
               </Button>
             </Segment>

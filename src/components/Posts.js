@@ -15,9 +15,6 @@ const Posts = props => {
     if (userObj) return userObj.username
   }
 
-  const addBreaks = text => 
-    text.split('\n')
-  
 
   return (
     <>
@@ -25,7 +22,7 @@ const Posts = props => {
       <Comment.Avatar src='https://picsum.photos/35/35' />
       <Comment.Content>
         <Comment.Author>{props.users ? matchUser() : null}</Comment.Author>
-        <Comment.Text>{addBreaks(props.post.content)}</Comment.Text>
+        <Comment.Text style={{whiteSpace: 'pre-wrap'}}>{props.post.content}</Comment.Text>
       </Comment.Content>
     </Comment>
     </>

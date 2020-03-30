@@ -1,5 +1,5 @@
 import React from "react"
-import { Header, Container, Button, Form, TextArea } from 'semantic-ui-react'
+import { Header, Segment, Button, Form, TextArea } from 'semantic-ui-react'
 
 
 const ScoreBoard = ({user, game, score, scoreField, handleEditInput, updateStateScore, showScore, showEditScore}) => {
@@ -27,7 +27,7 @@ const ScoreBoard = ({user, game, score, scoreField, handleEditInput, updateState
     <>
       <div>
         <Header as="h3">Score Board:</Header>
-          <p>{score}</p>
+          <Segment style={{whiteSpace: 'pre-wrap', marginBottom: '10px', fontSize: '16px'}} >{score}</Segment>
       </div>
       {showScore ?
         <div>
@@ -37,7 +37,7 @@ const ScoreBoard = ({user, game, score, scoreField, handleEditInput, updateState
                 onChange={e => handleEditInput(e)}
                 value={scoreField} 
                 placeholder='Tell us more' />
-              <Button color='teal' floated='right'>Submit</Button>
+              <Button style={{backgroundColor: '#2C4961', color: 'white', margin: '5px'}} floated='right'>Submit</Button>
             </Form>
         </div>
       : null }

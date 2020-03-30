@@ -19,15 +19,13 @@ class GamesPageContainer extends Component {
       
   componentDidMount() {
     let id = parseInt(this.props.match.params.id)
-    console.log(id)
     api.game.getGame(id)
       .then(game => {
-        console.log(game.tasks)
         this.setState({
         game: {...game, tasks: JSON.parse(game.tasks)}, 
         scoreField: game.score,
         commentSection: game.posts
-      }, () => console.log(this.state.game))})
+      })})
   }
 
   showGame = () => {
@@ -60,10 +58,8 @@ class GamesPageContainer extends Component {
   }
 
   updateComments = (comment) => {
-    console.log(comment)
     let newPosts = this.state.game
     newPosts.posts.push(comment)
-    console.log(newPosts)
     this.setState({
       game: newPosts
     })
@@ -83,6 +79,7 @@ class GamesPageContainer extends Component {
     let taskIds = Object.keys(this.state.game.tasks)
     return taskIds.map(taskId => {
       return  <Tasks 
+      key={taskId}
       task={this.state.game.tasks[taskId]} 
       selectedPlayer={this.state.selectedPlayer} 
       game={this.state.game}
@@ -118,8 +115,8 @@ class GamesPageContainer extends Component {
 
 
   joinGame = (game) => {
-    console.log(game.id)
-    console.log(this.props.user)
+    // console.log(game.id)
+    // console.log(this.props.user)
     let playerMatch = this.state.game.users.find(eachUser => {
       return eachUser.id === this.props.user.id
     })

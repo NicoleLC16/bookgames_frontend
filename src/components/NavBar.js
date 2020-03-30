@@ -12,7 +12,7 @@ class NavBar extends Component {
     this.setState({ activeItem: 'logout' })
     this.props.onLogOut()
     alert("You have been logged out")
-    this.props.history.push('/login')
+    this.props.history.push('/')
   }
 
   render() {
@@ -43,6 +43,8 @@ class NavBar extends Component {
           />
           <Menu.Item
             name='about'
+            as={NavLink}
+            exact to='/about'
             active={activeItem === 'about'}
             onClick={this.handleItemClick}
           />

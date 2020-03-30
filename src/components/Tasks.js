@@ -11,10 +11,10 @@ const Tasks = props => {
     
     let playerId = props.selectedPlayer
 
-    console.log(playerId)
+    // console.log(playerId)
     props.task.completed.push(playerId)
-    console.log(playerId)
-    console.log(props.game.tasks)  
+    // console.log(playerId)
+    // console.log(props.game.tasks)  
     fetch(`http://localhost:3000/games/${props.game.id}`, {
       method: "PATCH",
       headers: {
@@ -55,7 +55,7 @@ const Tasks = props => {
     //   })
     // return console.log(playerTasks)
   }
-  console.log(isCompleted())
+  // console.log(isCompleted())
   return (
     <>
         <Grid.Column className={isCompleted() ? 'board-content-completed' : 'board-content'} onClick={props.selectedPlayer === null || (props.user === null || props.user.id !== props.game.host) ? null : () => boardSelect()}>{props.task.description}</Grid.Column>

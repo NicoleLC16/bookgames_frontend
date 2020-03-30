@@ -14,13 +14,18 @@ const GamesCard = props => {
   const { id, host, title } = props.game
 
   const gameHost = () => {
-    
     let ghost = props.game.users.find (user => {
       return user.id === host
     })
-    console.log(ghost)
     return ghost.name
   }
+
+  // const gameHost = () => {
+  //   return props.users.map(user => {
+  //     return user.id === host ? user.name : null
+  //   })
+  // }
+
 
   const cImages = [heartbooks, redandblue, veschwab, alicezombie, daenerys, harrypotter, rainbow, reading]
 
@@ -33,7 +38,6 @@ const GamesCard = props => {
   const randImage = () => {
     let ind = Math.floor(Math.random() * cImages.length)
     let rImage = cImages[ind]
-    console.log(rImage)
     return <Image className='game-card-image' src={rImage} wrapped ui={false} />
   }
 

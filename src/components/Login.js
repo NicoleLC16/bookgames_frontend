@@ -25,16 +25,16 @@ class Login extends Component {
           this.setState({error: true});
         } else {
           this.props.onLogin(data);
-          this.props.history.push('/games');
+          this.props.history.push('/');
         }
     })
   }
 
   render() {
     return (
-      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+      <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as='h2' color='teal' textAlign='center'>
+          <Header as='h2' stye={{color: '#760E16'}} textAlign='center'>
             <Image src='/bookIcon.png' /> Log-in to your account
           </Header>
           <div>{this.state.error ? <h1>Try again...</h1> : null}</div>
@@ -58,7 +58,7 @@ class Login extends Component {
                 value={this.state.formFields.password} 
               />
 
-              <Button color='teal' fluid size='large'>
+              <Button style={{backgroundColor: '#760E16', color: 'white'}} fluid size='large'>
                 Login
               </Button>
             </Segment>
