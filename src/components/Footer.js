@@ -4,15 +4,6 @@ import { NavLink } from "react-router-dom"
 
 
 const Footer = props => {
-  // const { id, host, title } = props.game
-
-  // const gameHost = () => {
-    
-  //   let ghost = props.game.users.find (user => {
-  //     return user.id === host
-  //   })
-  //   return ghost.name
-  // }
 
   return (
     <>

@@ -33,9 +33,6 @@ const Tasks = props => {
   // .then(game => updateState(game)) 
 
     // let completedtasks = props.task.completed.push(playerId)
-    // console.log(completedtasks)
-    // console.log(props.game)
-    // return console.log(props.task)
   }
 
   const isCompleted = () => {
@@ -55,7 +52,6 @@ const Tasks = props => {
     //   })
     // return console.log(playerTasks)
   }
-  // console.log(isCompleted())
   return (
     <>
         <Grid.Column className={isCompleted() ? 'board-content-completed' : 'board-content'} onClick={props.selectedPlayer === null || (props.user === null || props.user.id !== props.game.host) ? null : () => boardSelect()}>{props.task.description}</Grid.Column>
