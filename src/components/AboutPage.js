@@ -5,7 +5,7 @@ class GamesContainer extends Component {
 
   render() {
     return(
-      <Segment style={{whiteSpace: 'pre-wrap'}}>
+      <Segment style={{whiteSpace: 'pre-wrap', margin: '0px'}}>
         <Header as='h2'>How to Play Book Bingo</Header>
         <p>There are two roles in book bingo. You can either be a game host or a player of a game.
         </p>
@@ -59,7 +59,7 @@ class GamesContainer extends Component {
 
       <Header as='h5'>Players</Header>
       <li>
-            Players Responsibilities:
+        <i><b>Player Responsibilities</b></i>
              <ul>
                <li>Look through the games page and pick a board you like</li>
                <li>Join a game</li>
