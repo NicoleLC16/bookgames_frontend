@@ -33,6 +33,7 @@ const Footer = props => {
                 Happy Reading
               </Header>
               <p>
+                Currently Book Bingo is the only game users can play. <br></br>
                 More games to come in the future!
               </p>
             </Grid.Column>
